@@ -4,7 +4,7 @@
 ![ETL Technical Architecture](https://raw.githubusercontent.com/mhdalfarisy/mhdalfarisy.github.io/main/src/assets/images/Diagram_ETL_Image.png)
 
 ## 📌 Project Overview
-Proyek ini membangun jalur data (**data pipeline**) *End-to-End* yang mengotomatisasi pengolahan data transaksi Trans Jakarta. Alur ini mencakup pengambilan data mentah, pembersihan data secara mendalam dengan Python, penyimpanan di Google BigQuery sebagai Data Warehouse, hingga visualisasi *real-time* di Power BI.
+This project builds an **End-to-End data pipeline** that automates the processing of Trans Jakarta transaction datasets. The workflow encompasses raw data extraction, deep data cleaning using Python, storage in Google BigQuery as a Data Warehouse, and real-time visualization via Power BI.
 
 ---
 
@@ -20,28 +20,28 @@ Proyek ini membangun jalur data (**data pipeline**) *End-to-End* yang mengotomat
 ## ⚙️ ETL Process Details
 
 ### 1. Extraction
-Mengimpor dataset transaksi Trans Jakarta dalam format **CSV** sebagai sumber data utama.
+Imports Trans Jakarta transaction datasets in **CSV** format as the primary data source.
 
 ### 2. Transformation
-Proses ini dilakukan menggunakan skrip Python untuk memastikan kualitas data:
-* **Pembersihan Data:** Menangani *null values* dan menghapus data duplikat.
-* **Time-Series Ready:** Konversi tipe data kolom tanggal dan waktu untuk kebutuhan analisis tren.
-* **Normalisasi:** Standarisasi nama halte dan rute agar konsisten.
-* **Optimasi:** Penghitungan metrik dasar untuk mempercepat performa *query* di Data Warehouse.
+The transformation process is handled via Python scripts to ensure data quality:
+* **Data Cleaning:** Handling null values and removing duplicate records.
+* **Time-Series Ready:** Converting date and time columns to appropriate data types for trend analysis.
+* **Normalization:** Standardizing bus stop names and routes for consistency.
+* **Optimization:** Calculating basic metrics to improve query performance in the Data Warehouse.
 
 ### 3. Loading
-Mengunggah hasil transformasi secara efisien ke tabel di **Google BigQuery** menggunakan *service account* yang aman (`.json` key).
+Efficiently uploads transformed data to **Google BigQuery** tables using a secure service account (`.json` key).
 
 ### 4. Logging & Monitoring
-Sistem mencatat setiap eksekusi ke dalam **Log File** dan **Log CSV** untuk memantau keberhasilan proses secara otomatis.
+The system automatically records every execution into a **Log File** and **Log CSV** to monitor process success and performance.
 
 ---
 
 ## 🚀 Key Features in Script
-Skrip `ETL_Trans_Jakarta.py` dirancang dengan standar profesional:
-* **Error Handling:** Menjaga stabilitas skrip agar tidak berhenti saat menemui anomali data.
-* **Automated Logging:** Melacak status eksekusi (Success/Fail) secara *real-time*.
-* **BigQuery Auto-Schema:** Memastikan struktur tabel di cloud tetap sinkron dengan data lokal secara otomatis.
+The `ETL_Trans_Jakarta.py` script is designed with professional standards:
+* **Error Handling:** Ensures script stability by preventing crashes during data anomalies.
+* **Automated Logging:** Tracks execution status (Success/Fail) in real-time.
+* **BigQuery Auto-Schema:** Automatically ensures the cloud table structure remains synchronized with local data.
 
 ---
 
@@ -49,10 +49,10 @@ Skrip `ETL_Trans_Jakarta.py` dirancang dengan standar profesional:
 ```text
 .
 ├── src/
-│   └── ETL_Trans_Jakarta.py      # Script utama ETL
+│   └── ETL_Trans_Jakarta.py      # Main ETL script
 ├── logs/
-│   ├── log_file.txt              # Riwayat eksekusi (text)
-│   └── log_summary.csv           # Ringkasan eksekusi (tabular)
+│   ├── log_file.txt              # Execution history (text)
+│   └── log_summary.csv           # Execution summary (tabular)
 ├── assets/
-│   └── Diagram_ETL_Image.png     # Arsitektur teknis
+│   └── Diagram_ETL_Image.png     # Technical architecture diagram
 └── README.md
